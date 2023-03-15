@@ -1,0 +1,26 @@
+﻿@using Lab2.Models.Domain;
+@model AddTicketVM;
+
+<form asp-action="Add" method="post">
+
+
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <input class="form-control" asp-for="Description" />
+    </div>
+
+    <div class="form-group">
+        <input class="" asp-for="IsClosed" />
+        <label asp-for="IsClosed"></label>
+    </div>
+
+
+
+    <div class="form-group">
+        <label asp-for="Severity"></label>
+        <select asp-for="Severity" asp-items="Html.GetEnumSelectList<Severity>()"></select>
+    </div>
+
+    <button class="btn btn-secondary"> Submit </button>
+
+</form>

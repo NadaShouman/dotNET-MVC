@@ -1,0 +1,85 @@
+﻿@using Lab1.Controllers;
+@model List<Car>;
+
+@{
+    var cars = Model;
+}
+
+@{
+    void RenderImage(Car car)
+    {
+        <figure>
+            <img src="@car.Image" alt="@car.Name" />
+            <figcaption>@car.Name</figcaption>
+        </figure>
+    }
+}
+
+<h1 style="text-align:center; background-color:azure;">Table of Cars</h1>
+
+<table class="table table-striped">
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Usage Duration</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Details</th>
+
+    </tr>
+    @for (int i = 0; i < cars.Count; i++)
+    {
+        <tr>
+            <td>@i</td>
+            <td>@cars[i].Name</td>
+            <td>@(DateTime.Now.Year - cars[i].FirstUseDate.Year)</td>
+            <td>@Html.Raw(cars[i].HtmlDescription)</td>
+            <td>
+                @{
+                    RenderImage(cars[i]);
+                }
+            </td>
+            <td>
+                <a href="/cars/getdetails?carModel=@cars[i].Model&status=@Status.table">
+                    <button type="button" class="btn btn-dark"> Details</button>
+                </a>
+            </td>
+
+
+        </tr>
+    }
+</table>
+
+<hr style="height:2px;border-width:0;color:gray;background-color:gray" />
+<h1 style="text-align:center; background-color:azure;">List of Cars</h1>
+
+<ul>
+    @{
+        for (int i = 0; i < cars.Count; i++)
+        {
+            <li>
+                @cars[i].Name
+            </li>
+            <li>
+                @(
+                $"Usage Duration: {cars[i].Duration}"
+                    )
+            </li>
+            <li>
+                @Html.Raw(cars[i].HtmlDescription)
+
+            </li>
+            <li>
+                @{
+                    RenderImage(cars[i]);
+                }
+            </li>
+            <li>
+                <a href="/cars/getdetails?carModel=@cars[i].Model&status=@Status.list">
+                    <button type="button" class="btn btn-dark">Details</button>
+                </a><hr>
+            </li>
+
+        }
+    }
+</ul>

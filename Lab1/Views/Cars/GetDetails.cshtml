@@ -1,0 +1,19 @@
+﻿@using Lab1.Controllers;
+@model CarInfo;
+@{
+    var car = Model.car;
+    var status = Model.status;
+}
+
+<div>
+    <p>@($"Name: {car?.Name}")</p>
+    <p>Usage Duration: @car?.Duration</p>
+    <p>Description: @Html.Raw(car?.HtmlDescription)</p>
+    <p>Image: <figure>
+                  <img src="@car?.Image" alt="@car?.Name" />
+                  <figcaption>@car?.Name</figcaption>
+              </figure>
+    </p>
+</div>
+
+<div class="alert-info">From: @status</div>
