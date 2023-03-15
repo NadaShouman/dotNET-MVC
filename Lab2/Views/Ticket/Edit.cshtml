@@ -1,0 +1,44 @@
+﻿@model EditTicketVM;
+
+@{
+    var departments = ViewData["Departments"] as IEnumerable<SelectListItem> ?? new List<SelectListItem>();
+    var developers = ViewData["Developers"] as IEnumerable<SelectListItem> ?? new List<SelectListItem>();
+}
+
+<form asp-action="Edit" method="post">
+
+    <div class="form-group">
+        <label asp-for="Id"></label>
+        <input type="hidden" class="form-control" asp-for="Id" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <input class="form-control" asp-for="Description" />
+    </div>
+
+    <div class="form-group">
+        <input class="" asp-for="IsClosed" />
+        <label asp-for="IsClosed"></label>
+    </div>
+
+
+
+    <div class="form-group">
+        <label asp-for="Severity"></label>
+        <select asp-for="Severity" asp-items="Html.GetEnumSelectList<Severity>()"></select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DepartmentId"></label>
+        <select asp-for="DepartmentId" asp-items="departments"></select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DevelopersIds"></label>
+        <select asp-for="DevelopersIds" asp-items="developers"></select>
+    </div>
+
+    <button class="btn btn-secondary"> Submit </button>
+
+</form>
